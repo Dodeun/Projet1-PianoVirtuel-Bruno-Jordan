@@ -1,0 +1,7 @@
+/* RESET */
+
+/* ----- GENERAL - Design mobile first ----- */
+
+body {
+	background-color: var(--background-color-test1);
+}

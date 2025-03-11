@@ -2,6 +2,6 @@
 
 /* VARIABLES */
 :root {
-	--background-color-test1: hsl(0, 100%, 11%);
-	--background-color-test2: hsl(240, 100%, 13%);
+  --background-color-test1: hsl(0, 100%, 89%);
+  --background-color-test2: hsl(240, 100%, 87%);
 }

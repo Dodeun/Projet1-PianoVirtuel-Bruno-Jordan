@@ -1,7 +1,25 @@
 /* RESET */
 
+* {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
 /* ----- GENERAL - Design mobile first ----- */
 
 body {
-	background-color: var(--background-color-test1);
+  background-color: var(--background-color-test1);
 }

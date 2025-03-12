@@ -13,7 +13,6 @@ function setupPiano(array, pianoPath) {
     /* ajoutes un eventListener à la touche qui call la fonction playClickedKey quand on click sur la touche */
     element.addEventListener("mousedown", () => {
       console.log(element);
-      playClickedKey(audioKey);
     });
   }
 }

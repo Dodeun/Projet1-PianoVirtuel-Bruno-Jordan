@@ -26,10 +26,21 @@ function setupPianoAudios(keysList, pianoPathInput, volumeInput) {
 
     /* ajoutes un eventListener à la touche qui call la fonction playClickedKey quand on click sur la touche */
     key.addEventListener("mousedown", () => {
+      /* lances la fonction qui joues la note */
+      playOnClick(audioKey);
       console.log(audioKey);
       console.log(audioKey.volume);
     });
   }
+}
+
+/* jouer la note de la touche cliquée */
+function playOnClick(clickedKey) {
+  /* mets le "player" de la note clické a 0.5 secondes du debut */
+  clickedKey.currentTime = 0.5;
+
+  /* joues le note */
+  clickedKey.play();
 }
 
 setupPianoAudios(keysArray, piano1Path, pianoVolume);

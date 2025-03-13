@@ -22,4 +22,139 @@ ul {
 
 body {
   background-color: var(--background-color-test1);
+  /* height: 100vh; */
+}
+
+
+/* clavier et fond */
+.keyboard {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 900px;
+  border-radius: 50px;
+  background-color: var(--back-keyboard);
+}
+
+.keyboard__header {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 95px;
+  margin-top: 50px;
+  border-radius: 10px;
+  filter: blur(1px);
+  opacity: 0.77;
+  border-radius: 15px;
+
+}
+
+/* Partie avec logo et titre */
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background-color: var(--lcd);
+  width: 500px;
+  height: 59px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+/* ecran titre h1 lcd */
+.brand__title {
+  color: #82a58b;
+  font-size: 3em;
+  font-family: "Doto", sans-serif;
+  ;
+}
+
+/* le logo */
+.brand__logo {
+  border-radius: 50px;
+
+}
+
+
+
+/* boutton pour enregistrer */
+.controls__record {
+  margin-top: 10%;
+  margin-left: -60%;
+  border-radius: 50px;
+  width: 65px;
+  height: 65px;
+  background-color: var(--rec);
+}
+
+/* boutton pour jouer le morceau enregistré */
+.controls__play {
+  background-color: var(--play);
+  border-radius: 50px;
+  width: 65px;
+  height: 65px;
+}
+
+
+
+/* les touches du piano */
+.keys__container {
+  width: 852px;
+  height: 304px;
+  margin: 20px auto;
+  border-radius: 50px;
+  background-color: var(--back_black_key);
+}
+
+.keys {
+  display: flex;
+  flex-direction: row;
+}
+
+.key__shortcut {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 24px;
+
+}
+
+
+
+.key {
+  width: 110px;
+  height: 330px;
+  border-radius: 32px;
+  box-shadow: var(--shadowsK);
+}
+
+/* les blanches */
+.key__white {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 7%;
+  background-color: var(--touch_white);
+  margin: 1%;
+  color: var(--lettres-white);
+
+
+}
+
+
+/* les Noires */
+.key__black {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 1;
+  margin: 0 -37px;
+  width: 74px;
+  height: 208px;
+  background-color: var(--touch_black);
+  color: var(--lettres-black);
+}
+
+
+body {
+  padding: 1em 2em;
+  font-size: 18px;
+  color: #aaa
 }

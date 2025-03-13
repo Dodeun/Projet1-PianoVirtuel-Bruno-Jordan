@@ -4,7 +4,7 @@
 :root {
   --background-color-test1: hsl(0, 100%, 89%);
   --background-color-test2: hsl(240, 100%, 87%);
-  --lcd: #BCFFBB;
+  --lcd: #000000;
   --rec: red;
   --play: #0afb06;
   --back-keyboard: #6F768D;

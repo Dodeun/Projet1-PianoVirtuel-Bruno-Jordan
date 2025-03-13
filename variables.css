@@ -1,7 +1,17 @@
 /* FONTS */
-
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 /* VARIABLES */
 :root {
   --background-color-test1: hsl(0, 100%, 89%);
   --background-color-test2: hsl(240, 100%, 87%);
+  --lcd: #BCFFBB;
+  --rec: red;
+  --play: #0afb06;
+  --back-keyboard: #6F768D;
+  --back_black_key: black;
+  --shadowsK: -6px -7px 2px 3px #6F8D82 inset;
+  --touch_black: #010000;
+  --touch_white: white;
+  --lettres-black: yellow;
+  --lettres-white: rgb(255, 0, 0);
 }

@@ -4,7 +4,7 @@ console.log("Keys list");
 console.log(keysArray);
 
 /* chemin vers les fichiers audio de piano1 */
-const piano1Path = "assets/sounds/piano1";
+const piano1Path = "assets/sounds/piano2";
 /* valeur par défaut du volume du clavier */
 const pianoVolume = 1;
 

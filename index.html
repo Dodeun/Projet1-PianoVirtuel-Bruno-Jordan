@@ -1,83 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- This is where i put all my --variables: X -->
-    <link rel="stylesheet" href="variables.css" />
-    <!-- my main css file -->
-    <link rel="stylesheet" href="styles.css" />
-    <!-- media query for screens larger than 700px -->
-    <link
-      rel="stylesheet"
-      href="responsive-largescreen.css"
-      media="only screen and (min-width: 700px)"
-    />
-    <!-- Don't forget to add description for SEO -->
-    <meta name="description" content="TOOOOOOOOOOOOOO DOOOOOOOOOOOOOO" />
-    <title>Piano virtuel</title>
-  </head>
-  <body>
-    <main class="keyboard">
-      <!-- Partie haute du clavier -->
-      <div class="keyboard__header">
-        <!-- Partie avec logo et titre (qui se trouve en haut a gauche sur la maquette) -->
-        <div class="brand">
-          <div class="brand__logo"><p>[V]</p></div>
-          <h1 class="brand__title">Piano Virtuel</h1>
-        </div>
-        <!-- Partie avec les boutons (qui se trouve en haut a droite sur la maquette) -->
-        <div class="controls">
-          <!-- boutton pour enregistrer -->
-          <button type="button" class="controls__btn controls__record"></button>
-          <!-- boutton pour jouer le morceau enregistré -->
-          <button type="button" class="controls__btn controls__play"></button>
-        </div>
-      </div>
-      <div class="keys__container">
-        <!-- les touches du piano -->
-        <ul class="keys">
-          <!-- Exemple de touche blanche qui doit jouer la note C au click -->
-          <li class="key key__white" data-note="Do">
-            <span class="key__shortcut">Q</span>
-          </li>
-          <!-- Exemple de touche noire qui doit jouer la note C# au click -->
-          <li class="key key__black" data-note="Do!">
-            <span class="key__shortcut">Z</span>
-          </li>
-          <li class="key key__white" data-note="Re">
-            <span class="key__shortcut">S</span>
-          </li>
-          <li class="key key__black" data-note="Re!">
-            <span class="key__shortcut">E</span>
-          </li>
-          <li class="key key__white" data-note="Mi">
-            <span class="key__shortcut">D</span>
-          </li>
-          <li class="key key__white" data-note="Fa">
-            <span class="key__shortcut">F</span>
-          </li>
-          <li class="key key__black" data-note="Fa!">
-            <span class="key__shortcut">T</span>
-          </li>
-          <li class="key key__white" data-note="Sol">
-            <span class="key__shortcut">G</span>
-          </li>
-          <li class="key key__black" data-note="Sol!">
-            <span class="key__shortcut">Y</span>
-          </li>
-          <li class="key key__white" data-note="La">
-            <span class="key__shortcut">H</span>
-          </li>
-          <li class="key key__black" data-note="La!">
-            <span class="key__shortcut">U</span>
-          </li>
-          <li class="key key__white" data-note="Si">
-            <span class="key__shortcut">J</span>
-          </li>
-        </ul>
-      </div>
-    </main>
-    <script src="script.js"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- This is where i put all my --variables: X -->
+		<link rel="stylesheet" href="variables.css" />
+		<!-- my main css file -->
+		<link rel="stylesheet" href="styles.css" />
+		<!-- media query for screens larger than 700px -->
+		<link
+			rel="stylesheet"
+			href="responsive-largescreen.css"
+			media="only screen and (min-width: 700px)"
+		/>
+		<!-- Don't forget to add description for SEO -->
+		<meta name="description" content="TOOOOOOOOOOOOOO DOOOOOOOOOOOOOO" />
+		<title>Piano virtuel</title>
+	</head>
+	<body>
+		<main class="keyboard">
+			<!-- Partie haute du clavier -->
+			<div class="keyboard__header">
+				<!-- Partie avec logo et titre (qui se trouve en haut a gauche sur la maquette) -->
+				<div class="brand">
+					<div class="brand__logo"><p>[V]</p></div>
+					<h1 class="brand__title">Piano Virtuel</h1>
+				</div>
+				<!-- Partie avec les boutons (qui se trouve en haut a droite sur la maquette) -->
+				<div class="controls">
+					<!-- boutton pour enregistrer -->
+					<button type="button" class="controls__btn controls__record"></button>
+					<!-- boutton pour jouer le morceau enregistré -->
+					<button type="button" class="controls__btn controls__play"></button>
+				</div>
+				<div class="additional__controls">
+					<div class="volume__container">
+						<label for="volume">Volume:</label>
+						<input
+							type="range"
+							class="slider"
+							id="volume"
+							min="0"
+							max="1"
+							step="0.01"
+							value="0.5"
+						/>
+					</div>
+					<div class="piano-selection__container">
+						<label for="piano-select">Style:</label>
+						<select id="piano-select">
+							<option value="option1">Normal</option>
+							<option value="option2">Electrique</option>
+							<option value="option3">Rhodes</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="keys__container">
+				<!-- les touches du piano -->
+				<ul class="keys">
+					<!-- Exemple de touche blanche qui doit jouer la note C au click -->
+					<li class="key key__white" data-note="Do">
+						<span class="key__shortcut">Q</span>
+					</li>
+					<!-- Exemple de touche noire qui doit jouer la note C# au click -->
+					<li class="key key__black" data-note="Do!">
+						<span class="key__shortcut">Z</span>
+					</li>
+					<li class="key key__white" data-note="Re">
+						<span class="key__shortcut">S</span>
+					</li>
+					<li class="key key__black" data-note="Re!">
+						<span class="key__shortcut">E</span>
+					</li>
+					<li class="key key__white" data-note="Mi">
+						<span class="key__shortcut">D</span>
+					</li>
+					<li class="key key__white" data-note="Fa">
+						<span class="key__shortcut">F</span>
+					</li>
+					<li class="key key__black" data-note="Fa!">
+						<span class="key__shortcut">T</span>
+					</li>
+					<li class="key key__white" data-note="Sol">
+						<span class="key__shortcut">G</span>
+					</li>
+					<li class="key key__black" data-note="Sol!">
+						<span class="key__shortcut">Y</span>
+					</li>
+					<li class="key key__white" data-note="La">
+						<span class="key__shortcut">H</span>
+					</li>
+					<li class="key key__black" data-note="La!">
+						<span class="key__shortcut">U</span>
+					</li>
+					<li class="key key__white" data-note="Si">
+						<span class="key__shortcut">J</span>
+					</li>
+				</ul>
+			</div>
+		</main>
+		<script src="script.js"></script>
+	</body>
 </html>

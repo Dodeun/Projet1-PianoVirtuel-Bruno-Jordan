@@ -1,8 +1,3 @@
-/* recuperation de l'element body dans le DOM */
-const body = document.querySelector("body");
-console.log("Body element");
-console.log(body);
-
 /* recuperation de toutes les touches de piano */
 const keysArray = document.querySelectorAll(".key");
 console.log("Keys list");
@@ -11,7 +6,7 @@ console.log(keysArray);
 /* chemin vers les fichiers audio de piano1 */
 const piano1Path = "assets/sounds/piano1";
 /* valeur par défaut du volume du clavier */
-const pianoVolume = 0.5;
+const pianoVolume = 1;
 
 const audioArray = [];
 
@@ -71,7 +66,8 @@ function playOnKeyboardPress(clickedKeyboardKey) {
 }
 
 /* ajoutes un eventListener sur le body qui call la fonction quand tu appuis sur une touche du clavier */
-body.addEventListener("keypress", (e) => {
+document.addEventListener("keydown", (e) => {
+	console.log(e);
 	/* on passe en para la lettre de la touche du clavier qui a été enfoncé (en majuscule si jamais le clavier est ou n'est pas en caps lock) */
 	playOnKeyboardPress(e.key.toUpperCase());
 });

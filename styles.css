@@ -1,7 +1,7 @@
 /* RESET */
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body,
@@ -9,17 +9,193 @@ h1,
 h2,
 p,
 ul {
-  margin: 0;
-  padding: 0;
-  font-weight: normal;
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
 }
 
 ul {
-  list-style: none;
+	list-style: none;
 }
 
 /* ----- GENERAL - Design mobile first ----- */
 
+html {
+	font-size: 18px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #eee;
+}
+
 body {
-  background-color: var(--background-color-test1);
+	display: grid;
+	align-items: center;
+	background-color: var(--background-color-test1);
+	height: 100vh;
+	padding: 0.5rem;
+}
+
+/* clavier et fond */
+.keyboard {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 800px;
+	border-radius: 50px;
+	background-color: var(--back-keyboard);
+	padding: 1.5rem 1rem 1rem 1rem;
+}
+
+.keyboard__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* Partie avec logo et titre */
+.brand {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	background-color: var(--lcd);
+	width: 50%;
+	border-radius: 15px;
+}
+
+.brand {
+	opacity: 0.99;
+	position: relative;
+	border-radius: 35px 10px 10px 10px;
+}
+
+.brand::before,
+.brand::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: linear-gradient(
+		45deg,
+		#920000,
+		#01acac,
+		#00a300,
+		#0000ff,
+		#920000,
+		#01acac,
+		#00a300,
+		#0000ff,
+		#920000
+	);
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background-size: 500%;
+	animation: animate 50s infinite;
+	border-radius: 35px 10px 10px 10px;
+	box-shadow: #aaa;
+}
+
+.brand::after {
+	filter: blur(40px);
+}
+
+@keyframes animate {
+	0% {
+		background-position: 0 0;
+	}
+	50% {
+		background-position: 100% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+/* ecran titre h1 lcd */
+.brand__title {
+	font-size: 2rem;
+	font-family: "Doto", sans-serif;
+}
+
+/* le logo */
+.brand__logo {
+	display: none;
+}
+
+.controls {
+	display: flex;
+	gap: 1rem;
+}
+
+.controls__btn {
+	border-radius: 50px;
+	width: 50px;
+	height: 50px;
+}
+
+/* boutton pour enregistrer */
+.controls__record {
+	background-color: var(--rec);
+}
+
+/* boutton pour jouer le morceau enregistré */
+.controls__play {
+	background-color: var(--play);
+}
+
+.additional__controls {
+	display: none;
+}
+
+/* les touches du piano */
+.keys__container {
+	transform: translateY(30px);
+}
+
+.keys {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.key__shortcut {
+	display: flex;
+	align-items: flex-end;
+	padding-bottom: 24px;
+}
+
+.key {
+	width: 105px;
+	height: 250px;
+	border-radius: 10px 10px 26px 26px;
+	box-shadow: var(--shadowsK);
+	font-weight: bold;
+}
+
+/* les blanches */
+.key__white {
+	display: flex;
+	justify-content: center;
+	background-color: var(--touch_white);
+	color: var(--lettres-white);
+}
+
+.key__white:active {
+	background-color: rgb(202, 202, 202);
+}
+
+/* les Noires */
+.key__black {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	z-index: 1;
+	margin: 0 -40px;
+	width: 80px;
+	height: 160px;
+	background-color: var(--touch_black);
+	color: var(--lettres-black);
+}
+
+.key__black:active {
+	background-color: rgb(61, 61, 61);
 }

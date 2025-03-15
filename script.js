@@ -4,7 +4,7 @@ console.log("Keys list");
 console.log(keysArray);
 
 /* chemin vers les fichiers audio de piano1 */
-const piano1Path = "assets/sounds/piano2";
+const piano1Path = "assets/sounds/grand-piano";
 /* valeur par défaut du volume du clavier */
 const pianoVolume = 1;
 
@@ -50,7 +50,7 @@ function setupPianoAudios(keysList, pianoPathInput, volumeInput) {
 /* jouer la note de la touche cliquée */
 function playOnClick(clickedKey) {
 	/* mets le "player" de la note clické a 0.5 secondes du debut */
-	clickedKey.currentTime = 0.5;
+	clickedKey.currentTime = 0;
 
 	/* joues la note */
 	clickedKey.play();
@@ -60,7 +60,7 @@ function playOnClick(clickedKey) {
 function playOnKeyboardPress(clickedKeyboardKey) {
 	/* exemple: quand tu appuis sur la touche Q du clavier, creer une const note = audioArray[keyboardReferences["Q"]] qui équivaut à audioArray[0] */
 	const note = audioArray[keyboardReferences[clickedKeyboardKey]];
-	note.currentTime = 0.5;
+	note.currentTime = 0;
 	note.play();
 	/* audioArray[keyboardReferences.clickedKeyboardKey].play(); */
 }

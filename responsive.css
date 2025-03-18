@@ -1,0 +1,50 @@
+/* Affiche les shortcuts et l'option pour activer / desactiver, uniquement sur desktop */
+@media (hover: hover) and (pointer: fine) {
+	.controls__shortcuts {
+		display: block;
+		margin-bottom: var(--spacing-primary);
+	}
+
+	.shortcut__btn {
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+	}
+
+	.shortcut__btn-content {
+		font-size: 1rem;
+		color: var(--color-light);
+		background-color: var(--background-color-kayboard-dark);
+		padding: var(--spacing-primary);
+		border: var(--border-btn);
+		border-radius: var(--border-radius-keyboard);
+		transition: 0.2s all ease-in-out;
+	}
+
+	.shortcut__btn-content--active {
+		background-color: var(--color-light);
+		color: var(--color-dark);
+	}
+
+	.shortcut__btn .key__white {
+		color: var(--color-dark);
+	}
+
+	.key__black {
+		color: var(--color-light);
+	}
+
+	.key__shortcut {
+		font-size: 1.5rem;
+		opacity: 1;
+		font-weight: 600;
+		padding-bottom: var(--spacing-larger);
+		transition: 0.2s all ease-in-out;
+	}
+}
+
+@media (max-width: 640px) {
+	.brand__title {
+		font-size: 1.5rem;
+	}
+}

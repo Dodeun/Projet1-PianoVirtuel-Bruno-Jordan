@@ -8,11 +8,7 @@
 		<!-- my main css file -->
 		<link rel="stylesheet" href="styles.css" />
 		<!-- media query for screens larger than 700px -->
-		<link
-			rel="stylesheet"
-			href="responsive-largescreen.css"
-			media="only screen and (min-width: 1200px)"
-		/>
+		<link rel="stylesheet" href="responsive.css" />
 		<!-- Don't forget to add description for SEO -->
 		<meta name="description" content="TOOOOOOOOOOOOOO DOOOOOOOOOOOOOO" />
 		<title>Piano virtuel</title>
@@ -21,21 +17,50 @@
 		<main class="keyboard">
 			<!-- Partie haute du clavier -->
 			<div class="keyboard__header">
-				<!-- Partie avec logo et titre (qui se trouve en haut a gauche sur la maquette) -->
-				<div class="brand">
-					<div class="brand__logo"><p>[V]</p></div>
-					<h1 class="brand__title">Piano Virtuel</h1>
+				<div class="lcd">
+					<!-- Partie avec logo et choix piano -->
+					<div class="brand">
+						<h1 class="brand__title">Piano Virtuel</h1>
+					</div>
+					<form id="piano-type">
+						<label>
+							<input type="radio" name="piano" value="grand-piano" checked />
+							Grand Piano
+						</label>
+
+						<label>
+							<input type="radio" name="piano" value="electric" />
+							Electric
+						</label>
+
+						<label>
+							<input type="radio" name="piano" value="rhodes" />
+							Rhodes
+						</label>
+					</form>
 				</div>
-				<!-- Partie avec les boutons (qui se trouve en haut a droite sur la maquette) -->
+				<!-- Partie avec les boutons -->
 				<div class="controls">
-					<!-- boutton pour enregistrer -->
-					<button type="button" class="controls__btn controls__record"></button>
-					<!-- boutton pour jouer le morceau enregistré -->
-					<button type="button" class="controls__btn controls__play"></button>
+					<div class="controls__shortcuts">
+						<button class="shortcut__btn">
+							<p class="shortcut__btn-content shortcut__btn-content--active">
+								Raccourcis clavier
+							</p>
+						</button>
+					</div>
+					<div class="controls__replay">
+						<!-- boutton pour enregistrer -->
+						<button
+							type="button"
+							class="controls__btn controls__record"
+						></button>
+						<!-- boutton pour jouer le morceau enregistré -->
+						<button type="button" class="controls__btn controls__play"></button>
+					</div>
 				</div>
-				<div class="additional__controls">
-					<div class="volume__container">
-						<label for="volume">Volume:</label>
+				<div class="volume__container">
+					<i class="fa-solid fa-volume-low"></i>
+					<form id="piano-volume">
 						<input
 							type="range"
 							class="slider"
@@ -45,15 +70,8 @@
 							step="0.01"
 							value="0.5"
 						/>
-					</div>
-					<div class="piano-selection__container">
-						<label for="piano-select">Style:</label>
-						<select id="piano-select">
-							<option value="option1">Normal</option>
-							<option value="option2">Electrique</option>
-							<option value="option3">Rhodes</option>
-						</select>
-					</div>
+					</form>
+					<i class="fa-solid fa-volume-high"></i>
 				</div>
 			</div>
 			<div class="keys__container">
@@ -100,6 +118,10 @@
 				</ul>
 			</div>
 		</main>
+		<script
+			src="https://kit.fontawesome.com/cbcb698840.js"
+			crossorigin="anonymous"
+		></script>
 		<script src="script.js"></script>
 	</body>
 </html>

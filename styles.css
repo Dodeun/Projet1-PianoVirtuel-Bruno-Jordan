@@ -46,6 +46,7 @@ body {
 	padding: var(--spacing-larger) var(--spacing-larger) 0;
 	border-radius: var(--border-radius-keyboard);
 	margin-bottom: var(--spacing-larger);
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 /* Header clavier */
@@ -266,7 +267,6 @@ body {
 	border-radius: var(--border-radius-keys);
 	padding: var(--spacing-primary);
 	box-shadow: var(--box-shadow-key);
-	transition: --p 2s, --c 0.1s;
 }
 
 /* @property --p {
@@ -286,35 +286,43 @@ body {
 	height: 100%;
 	/* background-color: var(--background-color-key-white); */
 	background: linear-gradient(
-		180deg,
-		rgba(219, 219, 219, 1) var(--p),
-		rgba(240, 248, 255, 1) calc(var(--p) + 5%),
-		rgba(227, 227, 227, 1) calc(var(--p) + 30%),
-		rgba(222, 222, 222, 1) calc(var(--p) + 94%)
+		90deg,
+		rgba(80, 80, 80, 1) 0%,
+		rgba(238, 238, 238, 1) var(--left-position),
+		rgba(255, 255, 255, 1) 50%,
+		rgba(238, 238, 238, 1) var(--right-position),
+		rgba(80, 80, 80, 1) 100%
 	);
+	transition: --left-position 0.1s ease-in, --right-position 0.1s ease-in;
 }
 
-.key--active {
-	--p: 100%;
-	--c: 120%;
+/* A RETIRER UNE FOIS GERE PAR LE JS */
+.key__white:active {
+	--left-position: 20%;
+	--right-position: 76%;
 }
 
-/* .key__white:active,
-.key__black:active {
-	--p: 100%;
-	--c: 120%;
-} */
+.key__white--active {
+	--left-position: 20%;
+	--right-position: 76%;
+}
 
 .key__black {
 	z-index: 1;
 	width: 66%;
 	height: 66%;
 	margin: 0 -5%;
-	background: linear-gradient(
-		rgb(14, 14, 14) var(--p),
-		rgb(34, 34, 34) var(--c),
-		rgb(10, 10, 10)
-	);
+	background: #1b1b1b;
+	transition: background 0.1s ease-in;
+}
+
+/* A RETIRER UNE FOIS GERE PAR LE JS */
+.key__black:active {
+	background: #5c5c5c;
+}
+
+.key__black--active {
+	background: #5c5c5c;
 }
 
 .key__shortcut {

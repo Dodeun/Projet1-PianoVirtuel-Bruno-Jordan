@@ -1,7 +1,8 @@
 const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le dom
-const piano1Path = "assets/sounds/piano1";
+const piano1Path = "assets/sounds/grand-piano";
 const pianoVolume = 0.1;
 const audioObject = {};
+const keysObject = {};
 
 const keyboardReferences = {
 	Q: "Do",
@@ -31,12 +32,19 @@ function prepareNotes(pianoPathInput, volumeInput, pianoKeysArray) {
 	console.log(audioObject);
 }
 
+// Prépare l'objet des touches de piano avec le nom de la note comme clé
+function prepareKeys(pianoKeysArray) {
+	for (const pianoKey of pianoKeysArray) {
+		keysObject[pianoKey.dataset.note] = pianoKey;
+	}
+	console.log(keysObject);
+}
+
 // Gestion clicks souris
 function setupMouseClick(piannoKeysArray) {
 	for (const pianoKey of piannoKeysArray) {
 		pianoKey.addEventListener("mousedown", () => {
 			const note = pianoKey.dataset.note; // exemple: note = "Sol" quand j'appuis sur la touche qui à un data-note = "Sol"
-			console.log(note);
 			playClickedNote(note);
 		});
 	}
@@ -46,7 +54,6 @@ function setupMouseClick(piannoKeysArray) {
 function handleKeyPress(pushedKeyboardKey) {
 	const note = keyboardReferences[pushedKeyboardKey]; // exemple: const note = keyboardRefences["Q"]; note = "Do"
 	if (note) {
-		console.log(note);
 		playClickedNote(note);
 	}
 }
@@ -63,16 +70,39 @@ function playClickedNote(clickedNote) {
 	const audio = audioObject[clickedNote]; // on récupere <audio src="pianoPathInput/Sol.mp3" ...> grace à sa clé audioObject["Sol"]
 	audio.currentTime = 0; // on remet l'audio au debut
 	audio.play();
+	keysAnimation(clickedNote);
 }
 
 // Gestion volume
 
 // Gestion choix piano
 
+// Gestion raccourcis clavier
+
 // Gestion enregistrement
 
 // Gestion playback
 
+// Animation des touches
+function keysAnimation(clickedNote) {
+	toggleActiveClass(clickedNote);
+	setTimeout(() => {
+		toggleActiveClass(clickedNote);
+	}, "500");
+}
+
+// Toggle class de la touche du piano joué
+function toggleActiveClass(notePlayed) {
+	const keyPressedElement = keysObject[notePlayed];
+	const keyIsWhite = keyPressedElement.classList.contains("key__white");
+	if (keyIsWhite) {
+		keyPressedElement.classList.toggle("key__white--active");
+	} else {
+		keyPressedElement.classList.toggle("key__black--active");
+	}
+}
+
 prepareNotes(piano1Path, pianoVolume, keysArray);
+prepareKeys(keysArray);
 setupMouseClick(keysArray);
 setupKeydownListener();

@@ -48,12 +48,17 @@
 	/*box-shadows*/
 	--box-shadow-key: -4px -5px 2px 3px #6f8d82 inset;
 	--box-shadow-keyboard: 0 6px 4px -4px var(--background-color-kayboard-dark);
-
-	/* background gradient color position */
 }
 
-@property --p {
+/* background gradient color position */
+@property --left-position {
 	syntax: "<percentage>";
 	inherits: false;
-	initial-value: -10%;
+	initial-value: 1%;
+}
+
+@property --right-position {
+	syntax: "<percentage>";
+	inherits: false;
+	initial-value: 95%;
 }

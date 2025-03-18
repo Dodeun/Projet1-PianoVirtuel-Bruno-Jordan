@@ -39,7 +39,7 @@
 		opacity: 1;
 		font-weight: 600;
 		padding-bottom: var(--spacing-larger);
-		transition: 0.2s all ease-in-out;
+		user-select: none;
 	}
 }
 

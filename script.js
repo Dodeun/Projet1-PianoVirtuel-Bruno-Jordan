@@ -1,75 +1,78 @@
-/* recuperation de toutes les touches de piano */
-const keysArray = document.querySelectorAll(".key");
-console.log("Keys list");
-console.log(keysArray);
-
-/* chemin vers les fichiers audio de piano1 */
-const piano1Path = "assets/sounds/piano2";
-/* valeur par défaut du volume du clavier */
-const pianoVolume = 1;
-
-const audioArray = [];
+const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le dom
+const piano1Path = "assets/sounds/piano1";
+const pianoVolume = 0.1;
+const audioObject = {};
 
 const keyboardReferences = {
-	Q: 0,
-	Z: 1,
-	S: 2,
-	E: 3,
-	D: 4,
-	F: 5,
-	T: 6,
-	G: 7,
-	Y: 8,
-	H: 9,
-	U: 10,
-	J: 11,
+	Q: "Do",
+	Z: "Do!",
+	S: "Re",
+	E: "Re!",
+	D: "Mi",
+	F: "Fa",
+	T: "Fa!",
+	G: "Sol",
+	Y: "Sol!",
+	H: "La",
+	U: "La!",
+	J: "Si",
 };
 
-/* creer et assigne un element audio pour chaque touche de piano, en fonction du choix de piano */
-function setupPianoAudios(keysList, pianoPathInput, volumeInput) {
-	/* boucle sur chaque touche de la liste de touches */
-	for (const key of keysList) {
-		/* creer un new audio qui à pour source le chemin donné dans 
-        pianoPath + le nom du fichier qui correspond au data-note */
-		const audioKey = new Audio(`${pianoPathInput}/${key.dataset.note}.mp3`);
-		audioArray.push(audioKey);
-
-		/* ajuste le volume de la note en fonction des options du piano */
+// Prépare l'objet des notes avec le nom de la note comme clé - à besoin du chemin vers les notes de piano choisies, le volume souhaité, la liste des touches de piano
+function prepareNotes(pianoPathInput, volumeInput, pianoKeysArray) {
+	// Boucle sur chaque touche du piano
+	for (const pianoKey of pianoKeysArray) {
+		const audioKey = new Audio(
+			`${pianoPathInput}/${pianoKey.dataset.note}.mp3`,
+		);
 		audioKey.volume = volumeInput;
+		audioObject[pianoKey.dataset.note] = audioKey; // Ajoute a l'objet audioObject une paire clé: valeur; exemple: "Sol": <audio src="pianoPathInput/Sol.mp3" ...>
+	}
+	console.log(audioObject);
+}
 
-		/* ajoutes un eventListener à la touche qui call la fonction playClickedKey quand on click sur la touche */
-		key.addEventListener("mousedown", () => {
-			/* lances la fonction qui joues la note */
-			playOnClick(audioKey);
-			console.log(audioKey);
-			console.log(audioKey.volume);
+// Gestion clicks souris
+function setupMouseClick(piannoKeysArray) {
+	for (const pianoKey of piannoKeysArray) {
+		pianoKey.addEventListener("mousedown", () => {
+			const note = pianoKey.dataset.note; // exemple: note = "Sol" quand j'appuis sur la touche qui à un data-note = "Sol"
+			console.log(note);
+			playClickedNote(note);
 		});
 	}
 }
 
-/* jouer la note de la touche cliquée */
-function playOnClick(clickedKey) {
-	/* mets le "player" de la note clické a 0.5 secondes du debut */
-	clickedKey.currentTime = 0.5;
-
-	/* joues la note */
-	clickedKey.play();
+// Gestion clavier
+function handleKeyPress(pushedKeyboardKey) {
+	const note = keyboardReferences[pushedKeyboardKey]; // exemple: const note = keyboardRefences["Q"]; note = "Do"
+	if (note) {
+		console.log(note);
+		playClickedNote(note);
+	}
 }
 
-/* jouer la note correspond a la touche clavier  */
-function playOnKeyboardPress(clickedKeyboardKey) {
-	/* exemple: quand tu appuis sur la touche Q du clavier, creer une const note = audioArray[keyboardReferences["Q"]] qui équivaut à audioArray[0] */
-	const note = audioArray[keyboardReferences[clickedKeyboardKey]];
-	note.currentTime = 0.5;
-	note.play();
-	/* audioArray[keyboardReferences.clickedKeyboardKey].play(); */
+function setupKeydownListener() {
+	document.addEventListener("keydown", (e) => {
+		if (e.repeat) return; // pour ne pas rejouer la note tant qu'on garde la touche enfoncée
+		handleKeyPress(e.key.toUpperCase()); // dans l'objet e on recupere la valeur de la touche clavier qu'on met en majuscule
+	});
 }
 
-/* ajoutes un eventListener sur le body qui call la fonction quand tu appuis sur une touche du clavier */
-document.addEventListener("keydown", (e) => {
-	console.log(e);
-	/* on passe en para la lettre de la touche du clavier qui a été enfoncé (en majuscule si jamais le clavier est ou n'est pas en caps lock) */
-	playOnKeyboardPress(e.key.toUpperCase());
-});
+// Jouer une note
+function playClickedNote(clickedNote) {
+	const audio = audioObject[clickedNote]; // on récupere <audio src="pianoPathInput/Sol.mp3" ...> grace à sa clé audioObject["Sol"]
+	audio.currentTime = 0; // on remet l'audio au debut
+	audio.play();
+}
 
-setupPianoAudios(keysArray, piano1Path, pianoVolume);
+// Gestion volume
+
+// Gestion choix piano
+
+// Gestion enregistrement
+
+// Gestion playback
+
+prepareNotes(piano1Path, pianoVolume, keysArray);
+setupMouseClick(keysArray);
+setupKeydownListener();

@@ -2,6 +2,7 @@ const keysArray = document.querySelectorAll(".key"); // On recupere les touches 
 const recordBtn = document.querySelector(".controls__record"); // On recupere le bouton record dans le DOM
 const volumeSlider = document.querySelector("#volume"); // On recupere le slider dans le DOM
 const shortcutBtn = document.querySelector(".shortcut__btn"); // on recupere le bouton des raccourcis clavier dans le DOM
+const shortcutInfoList = document.querySelectorAll(".key__shortcut"); // on recupere les span contennant l'information des raccourcis clavier
 
 const pianoPath = "assets/sounds/grand-piano";
 let pianoVolume = volumeSlider.value;
@@ -79,7 +80,6 @@ function playClickedNote(clickedNote) {
 	}
 }
 
-// FAIRE LE CHANGEMENT AU MOUSE UP ET EQUIVALENT FINGER UP touchend
 // Gestion volume
 volumeSlider.addEventListener("touchend", (e) => {
 	pianoVolume = e.target.value;
@@ -95,7 +95,20 @@ volumeSlider.addEventListener("mouseup", (e) => {
 
 // Gestion raccourcis clavier
 shortcutBtn.addEventListener("click", () => {
-	shortcutBtn.classList.toggle("shortcut__btn-content--active");
+	shortcutBtn.classList.toggle("shortcut__btn--active");
+
+	const shortcutIsActive = shortcutBtn.classList.contains(
+		"shortcut__btn--active",
+	);
+	if (shortcutIsActive) {
+		for (const shortcutInfo of shortcutInfoList) {
+			shortcutInfo.style.opacity = 1;
+		}
+	} else {
+		for (const shortcutInfo of shortcutInfoList) {
+			shortcutInfo.style.opacity = 0;
+		}
+	}
 });
 
 // Gestion bouton enregistrement

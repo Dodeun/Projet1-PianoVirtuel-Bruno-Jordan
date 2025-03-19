@@ -19,15 +19,9 @@
 
 	.shortcut__btn-content {
 		font-size: 1rem;
-		/* color: var(--color-light);
-		background-color: var(--background-color-kayboard-dark);
-		padding: var(--spacing-primary);
-		border: var(--border-btn);
-		border-radius: var(--border-radius-keyboard);
-		transition: 0.2s all ease-in-out; */
 	}
 
-	.shortcut__btn-content--active {
+	.shortcut__btn--active {
 		background-color: var(--color-light);
 		color: var(--color-dark);
 	}
@@ -46,6 +40,7 @@
 		font-weight: 600;
 		padding-bottom: var(--spacing-larger);
 		user-select: none;
+		transition: opacity 0.2s ease-in-out;
 	}
 }
 

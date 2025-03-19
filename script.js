@@ -1,7 +1,7 @@
 const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le dom
 const recordBtn = document.querySelector(".controls__record");
-const piano1Path = "assets/sounds/grand-piano";
-const pianoVolume = 0.1;
+const piano1Path = "assets/sounds/classic";
+const pianoVolume = 0.3;
 const audioObject = {};
 const keysObject = {};
 const recordObject = {};

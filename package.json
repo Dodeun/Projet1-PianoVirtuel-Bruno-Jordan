@@ -1,0 +1,23 @@
+{
+  "name": "projet1-pianovirtuel-bruno-jordan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dodeun/Projet1-PianoVirtuel-Bruno-Jordan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dodeun/Projet1-PianoVirtuel-Bruno-Jordan/issues"
+  },
+  "homepage": "https://github.com/Dodeun/Projet1-PianoVirtuel-Bruno-Jordan#readme",
+  "dependencies": {
+    "raindeer": "^0.2.0"
+  }
+}

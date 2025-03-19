@@ -1,5 +1,7 @@
+/* const */
 const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le DOM
 const recordBtn = document.querySelector(".controls__record"); // On recupere le bouton record dans le DOM
+const playBtn = document.querySelector(".controls__play"); // On recupere le bouton play dans le DOM
 const volumeSlider = document.querySelector("#volume"); // On recupere le slider dans le DOM
 const shortcutBtn = document.querySelector(".shortcut__btn"); // on recupere le bouton des raccourcis clavier dans le DOM
 const shortcutInfoList = document.querySelectorAll(".key__shortcut"); // on recupere les span contennant l'information des raccourcis clavier
@@ -163,6 +165,29 @@ function toggleActiveClass(notePlayed) {
 		keyPressedElement.classList.toggle("key__black--active");
 	}
 }
+
+// Effet npm emoticon rain
+playBtn.addEventListener("click", () => {
+	animDuringPlay();
+});
+
+// Annim pendant que la musique joue
+function animDuringPlay() {
+	EmojiRain.start(document.body, {
+		duration: 0,
+		dropsPerSecond: 15,
+		dropSize: 40,
+		speedMin: 1500,
+		speedMax: 3000,
+		emoji: {
+			"🎵": 10,
+			"🎶": 2,
+			"🎹": 2,
+			"😎": 1,
+		},
+	});
+}
+// AJOUTER EmojiRain.stop() pour que l'animation s'arrete
 
 prepareNotes(pianoPath, pianoVolume, keysArray);
 prepareKeys(keysArray);

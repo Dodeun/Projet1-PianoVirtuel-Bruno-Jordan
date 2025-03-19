@@ -1,8 +1,10 @@
 const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le dom
+const recordBtn = document.querySelector(".controls__record");
 const piano1Path = "assets/sounds/grand-piano";
 const pianoVolume = 0.1;
 const audioObject = {};
 const keysObject = {};
+const recordObject = {};
 
 const keyboardReferences = {
 	Q: "Do",
@@ -29,7 +31,6 @@ function prepareNotes(pianoPathInput, volumeInput, pianoKeysArray) {
 		audioKey.volume = volumeInput;
 		audioObject[pianoKey.dataset.note] = audioKey; // Ajoute a l'objet audioObject une paire clé: valeur; exemple: "Sol": <audio src="pianoPathInput/Sol.mp3" ...>
 	}
-	console.log(audioObject);
 }
 
 // Prépare l'objet des touches de piano avec le nom de la note comme clé
@@ -37,7 +38,6 @@ function prepareKeys(pianoKeysArray) {
 	for (const pianoKey of pianoKeysArray) {
 		keysObject[pianoKey.dataset.note] = pianoKey;
 	}
-	console.log(keysObject);
 }
 
 // Gestion clicks souris
@@ -71,6 +71,9 @@ function playClickedNote(clickedNote) {
 	audio.currentTime = 0; // on remet l'audio au debut
 	audio.play();
 	keysAnimation(clickedNote);
+	if (isRecording()) {
+		recordPlayedKey(clickedNote);
+	}
 }
 
 // Gestion volume
@@ -79,7 +82,40 @@ function playClickedNote(clickedNote) {
 
 // Gestion raccourcis clavier
 
+// Gestion bouton enregistrement
+function setupRecordBtn() {
+	recordBtn.addEventListener("click", () => {
+		recordBtn.classList.toggle("controls__record--active");
+		// IF NOT RECORDING
+		if (isRecording()) {
+			const props = Object.getOwnPropertyNames(recordObject);
+			for (let i = 0; i < props.length; i++) {
+				delete recordObject[props[i]];
+			}
+			console.log("Debut de l'enregistrement");
+		} else {
+			console.log("Fin d'enregistrement:");
+			console.log(recordObject);
+		}
+	});
+}
+
+function isRecording() {
+	const recording = recordBtn.classList.contains("controls__record--active");
+	return recording;
+}
+
 // Gestion enregistrement
+function recordPlayedKey(clickedNote) {
+	const timeClicked = performance.now();
+	if (!(clickedNote in recordObject)) {
+		recordObject[clickedNote] = [];
+	}
+	recordObject[clickedNote].push(timeClicked);
+	console.log(recordObject);
+}
+
+// Gestion timeur
 
 // Gestion playback
 
@@ -106,3 +142,4 @@ prepareNotes(piano1Path, pianoVolume, keysArray);
 prepareKeys(keysArray);
 setupMouseClick(keysArray);
 setupKeydownListener();
+setupRecordBtn();

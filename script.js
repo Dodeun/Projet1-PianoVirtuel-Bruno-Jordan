@@ -1,10 +1,9 @@
-const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le dom
-const recordBtn = document.querySelector(".controls__record");
-// je selection mon slide dans le DOM
-const volumeSlider = document.querySelector('#volume');
+const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le DOM
+const recordBtn = document.querySelector(".controls__record"); // On recupere le bouton record dans le DOM
+const volumeSlider = document.querySelector("#volume"); // On recupere le slider dans le DOM
+const shortcutBtn = document.querySelector(".shortcut__btn"); // on recupere le bouton des raccourcis clavier dans le DOM
 
-const pianoPath = "assets/sounds/classic";
-//j'initialise ma variable pianoVolume (qui prend par default, la valeur de notre element "volumeSilder" )
+const pianoPath = "assets/sounds/grand-piano";
 let pianoVolume = volumeSlider.value;
 const audioObject = {};
 const keysObject = {};
@@ -80,28 +79,29 @@ function playClickedNote(clickedNote) {
 	}
 }
 
+// FAIRE LE CHANGEMENT AU MOUSE UP ET EQUIVALENT FINGER UP touchend
 // Gestion volume
-//j'ajoute un eventelistener sur mon slider pour me prevenir et me donner la valeur 
-// du slider si elle est changer  
-
-volumeSlider.addEventListener("input", (e) => {
-	// pianoVolume prend la valeur du slider
+volumeSlider.addEventListener("touchend", (e) => {
 	pianoVolume = e.target.value;
-	// je re construis mes audios avec le nouveau volume
 	prepareNotes(pianoPath, pianoVolume, keysArray);
-})
+});
 
-
+volumeSlider.addEventListener("mouseup", (e) => {
+	pianoVolume = e.target.value;
+	prepareNotes(pianoPath, pianoVolume, keysArray);
+});
 
 // Gestion choix piano
 
 // Gestion raccourcis clavier
+shortcutBtn.addEventListener("click", () => {
+	shortcutBtn.classList.toggle("shortcut__btn-content--active");
+});
 
 // Gestion bouton enregistrement
 function setupRecordBtn() {
 	recordBtn.addEventListener("click", () => {
 		recordBtn.classList.toggle("controls__record--active");
-		// IF NOT RECORDING
 		if (isRecording()) {
 			const props = Object.getOwnPropertyNames(recordObject);
 			for (let i = 0; i < props.length; i++) {
@@ -129,8 +129,6 @@ function recordPlayedKey(clickedNote) {
 	recordObject[clickedNote].push(timeClicked);
 	console.log(recordObject);
 }
-
-// Gestion timeur
 
 // Gestion playback
 

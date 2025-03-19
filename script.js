@@ -1,7 +1,11 @@
 const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le dom
 const recordBtn = document.querySelector(".controls__record");
-const piano1Path = "assets/sounds/classic";
-const pianoVolume = 0.3;
+// je selection mon slide dans le DOM
+const volumeSlider = document.querySelector('#volume');
+
+const pianoPath = "assets/sounds/classic";
+//j'initialise ma variable pianoVolume (qui prend par default, la valeur de notre element "volumeSilder" )
+let pianoVolume = volumeSlider.value;
 const audioObject = {};
 const keysObject = {};
 const recordObject = {};
@@ -77,6 +81,17 @@ function playClickedNote(clickedNote) {
 }
 
 // Gestion volume
+//j'ajoute un eventelistener sur mon slider pour me prevenir et me donner la valeur 
+// du slider si elle est changer  
+
+volumeSlider.addEventListener("input", (e) => {
+	// pianoVolume prend la valeur du slider
+	pianoVolume = e.target.value;
+	// je re construis mes audios avec le nouveau volume
+	prepareNotes(pianoPath, pianoVolume, keysArray);
+})
+
+
 
 // Gestion choix piano
 
@@ -138,7 +153,7 @@ function toggleActiveClass(notePlayed) {
 	}
 }
 
-prepareNotes(piano1Path, pianoVolume, keysArray);
+prepareNotes(pianoPath, pianoVolume, keysArray);
 prepareKeys(keysArray);
 setupMouseClick(keysArray);
 setupKeydownListener();

@@ -186,16 +186,53 @@ input[type="radio"]:checked + label {
 	cursor: pointer;
 }
 
-.controls__record,
+.controls__record {
+	background-color: var(--background-color-inactive-record);
+}
+
 .controls__play {
-	background-color: var(--background-colot-inactive);
+	background-color: var(--background-color-inactive-play);
 	transition: background-color 0.15s ease-in-out;
 }
+
+/* bouton clickable */
+
+.controls__record::after,
+.controls__play::after {
+	font-size: 1.75rem;
+	font-weight: bold;
+}
+
+.controls__record::after {
+	content: "R";
+	color: var(--color-red);
+}
+
+.controls__play::after {
+	content: "P";
+	color: var(--color-green);
+}
+
+/* bouton disabled */
 
 .controls__record:disabled,
 .controls__play:disabled {
 	cursor: not-allowed;
 	background-color: var(--background-colot-disabled);
+}
+
+.controls__record:disabled::after {
+	color: black;
+}
+
+.controls__play:disabled::after {
+	color: black;
+}
+
+/* bouton actif */
+.controls__record--active::after,
+.controls__play--active::after {
+	color: var(--color-light);
 }
 
 .controls__record--active {

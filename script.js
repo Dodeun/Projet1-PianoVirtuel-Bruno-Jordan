@@ -170,10 +170,8 @@ function delayNote(notePlayed, notePlayedTime) {
 
 // Bouton play bloqué pendant l'écoute
 function lockPlay(recordDuration) {
-	playBtn.computedStyleMap.pointerEvents = "none";
 	setTimeout(() => {
 		recordBtn.disabled = false;
-		playBtn.computedStyleMap.pointerEvents = "auto";
 		playBtn.classList.remove("controls__play--active");
 		EmojiRain.stop(rainIncrement);
 		rainIncrement++;

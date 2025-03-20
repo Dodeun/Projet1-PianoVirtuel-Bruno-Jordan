@@ -1,5 +1,25 @@
 /* Affiche les shortcuts et l'option pour activer / desactiver, uniquement sur desktop */
 @media (hover: hover) and (pointer: fine) {
+	.logo {
+		display: block;
+		position: absolute;
+		top: -98%;
+		right: 4%;
+		width: 400px;
+		transform: translateY(-30%);
+		opacity: 0.2;
+		animation: spin 20s infinite linear;
+	}
+
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
 	.keyboard.key__shortcut--active .key__shortcut {
 		opacity: 1;
 	}
@@ -56,5 +76,11 @@
 @media (max-width: 640px) {
 	.brand__title {
 		font-size: 1.5rem;
+	}
+}
+
+@media (max-width: 800px) {
+	.logo {
+		display: none;
 	}
 }

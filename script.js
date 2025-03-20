@@ -7,10 +7,14 @@ const shortcutBtn = document.querySelector(".shortcut__btn"); // on recupere le 
 const shortcutInfoList = document.querySelectorAll(".key__shortcut"); // on recupere les span contennant l'information des raccourcis clavier
 
 const pianoPath = "assets/sounds/grand-piano";
-let pianoVolume = volumeSlider.value;
 const audioObject = {};
 const keysObject = {};
 const recordObject = {};
+
+let pianoVolume = volumeSlider.value;
+let startTimeOfRecording = 0;
+let playingRecord = false;
+let rainIncrement = 0;
 
 const keyboardReferences = {
 	Q: "Do",
@@ -123,6 +127,8 @@ function setupRecordBtn() {
 				delete recordObject[props[i]];
 			}
 			console.log("Debut de l'enregistrement");
+			startTimeOfRecording = performance.now();
+			console.log(startTimeOfRecording);
 		} else {
 			console.log("Fin d'enregistrement:");
 			console.log(recordObject);
@@ -137,7 +143,7 @@ function isRecording() {
 
 // Gestion enregistrement
 function recordPlayedKey(clickedNote) {
-	const timeClicked = performance.now();
+	const timeClicked = performance.now() - startTimeOfRecording;
 	if (!(clickedNote in recordObject)) {
 		recordObject[clickedNote] = [];
 	}
@@ -146,6 +152,36 @@ function recordPlayedKey(clickedNote) {
 }
 
 // Gestion playback
+function playback(record) {
+	console.log(record);
+	for (const note in record) {
+		for (const noteTime of record[note]) {
+			console.log(`${note} est jouée apres ${noteTime}`);
+			delayNote(note, noteTime);
+		}
+	}
+}
+
+// Gestion note delay
+function delayNote(notePlayed, notePlayedTime) {
+	setTimeout(() => playClickedNote(notePlayed), notePlayedTime);
+}
+
+// Gestion bouton play
+playBtn.addEventListener("click", () => {
+	if (!playingRecord) {
+		playingRecord = true;
+		playBtn.classList.add("controls__play--active");
+		animDuringPlay();
+		playback(recordObject);
+	} else {
+		playingRecord = false;
+		playBtn.classList.remove("controls__play--active");
+		EmojiRain.stop(rainIncrement);
+		rainIncrement++;
+	}
+	console.log(playingRecord);
+});
 
 // Animation des touches
 function keysAnimation(clickedNote) {
@@ -165,11 +201,6 @@ function toggleActiveClass(notePlayed) {
 		keyPressedElement.classList.toggle("key__black--active");
 	}
 }
-
-// Effet npm emoticon rain
-playBtn.addEventListener("click", () => {
-	animDuringPlay();
-});
 
 // Annim pendant que la musique joue
 function animDuringPlay() {

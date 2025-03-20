@@ -22,6 +22,7 @@
 	--background-colot-inactive: #c9c9c9;
 	--background-color-record: red;
 	--background-color-play: rgb(0, 255, 0);
+	--background-colot-disabled: #666666;
 
 	/*spacings*/
 	--spacing-primary: 0.5rem;
@@ -32,7 +33,7 @@
 	--height-volume-container: 32px;
 	--max-width-keyboard: 900px;
 	--max-height-keyboard: 560px;
-	--max-height-keyboard-header: 120px;
+	--max-height-keyboard-header: 105px;
 	--max-height-keyboard-header--desktop: 140px;
 	--width-lcd: 80%;
 	--width-controls: calc(100% - var(--width-lcd));

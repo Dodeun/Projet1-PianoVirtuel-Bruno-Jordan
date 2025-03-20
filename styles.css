@@ -190,6 +190,11 @@ body {
 	transition: background-color 0.15s ease-in-out;
 }
 
+.controls__record:disabled,
+.controls__play:disabled {
+	background-color: var(--background-colot-disabled);
+}
+
 .controls__record--active {
 	background-color: var(--background-color-record);
 }

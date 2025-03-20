@@ -10,7 +10,8 @@
 	--font-text: Arial, Helvetica, sans-serif;
 	--color-light: #f1f1f1;
 	--color-dark: #0e0e0e;
-	--color-active: rgb(121, 255, 121);
+	--color-red: rgb(255, 0, 0);
+	--color-green: rgb(0, 255, 0);
 
 	/*backgrounds*/
 	--background-color-body: hsl(240, 100%, 87%);
@@ -19,7 +20,8 @@
 	--background-color-key-black: #0e0e0e;
 	--background-color-kayboard-dark: hsl(226, 12%, 22%);
 	--background-color-btn: #f1f1f1;
-	--background-colot-inactive: #c9c9c9;
+	--background-color-inactive-record: rgb(69, 0, 0);
+	--background-color-inactive-play: rgb(0, 88, 0);
 	--background-color-record: red;
 	--background-color-play: rgb(0, 255, 0);
 	--background-colot-disabled: #666666;

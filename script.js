@@ -1,13 +1,15 @@
 /* const */
 const keyboard = document.querySelector(".keyboard"); // On recupere le piano dans le DOM
 const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le DOM
+const pianosList = document.querySelectorAll('input[name="piano"]');
 const recordBtn = document.querySelector(".controls__record"); // On recupere le bouton record dans le DOM
 const playBtn = document.querySelector(".controls__play"); // On recupere le bouton play dans le DOM
 const volumeSlider = document.querySelector("#volume"); // On recupere le slider dans le DOM
 const shortcutBtn = document.querySelector(".shortcut__btn"); // on recupere le bouton des raccourcis clavier dans le DOM
 const shortcutInfoList = document.querySelectorAll(".key__shortcut"); // on recupere les span contennant l'information des raccourcis clavier
+const pianoChecked = document.querySelector('input[name="piano"]:checked');
 
-const pianoPath = "assets/sounds/grand-piano";
+let pianoPath = `assets/sounds/${pianoChecked.value}`;
 const audioObject = {};
 const keysObject = {};
 const recordObject = {};
@@ -100,6 +102,15 @@ volumeSlider.addEventListener("mouseup", (e) => {
 });
 
 // Gestion choix piano
+for (const pianoType of pianosList) {
+	pianoType.addEventListener("click", () => {
+		const newPiano = `assets/sounds/${pianoType.value}`;
+		if (newPiano !== pianoPath) {
+			pianoPath = newPiano;
+			prepareNotes(pianoPath, pianoVolume, keysArray);
+		}
+	});
+}
 
 // Gestion raccourcis clavier
 shortcutBtn.addEventListener("click", () => {
@@ -120,8 +131,6 @@ function setupRecordBtn() {
 			startTimeOfRecording = performance.now();
 			playBtn.disabled = true;
 		} else {
-			console.log("Fin d'enregistrement:");
-			console.log(recordObject);
 			playBtn.disabled = false;
 		}
 	});
@@ -144,7 +153,6 @@ function recordPlayedKey(clickedNote) {
 // Gestion playback
 function playback(record) {
 	recordTimeLength = 0;
-	console.log(record);
 	for (const note in record) {
 		for (const noteTime of record[note]) {
 			delayNote(note, noteTime);
@@ -153,7 +161,6 @@ function playback(record) {
 			}
 		}
 	}
-	console.log(recordTimeLength);
 }
 
 // Gestion note delay
@@ -184,7 +191,6 @@ playBtn.addEventListener("click", () => {
 		playback(recordObject);
 		lockPlay(recordTimeLength);
 	}
-	console.log(playingRecord);
 });
 
 // Animation des touches

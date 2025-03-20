@@ -32,7 +32,8 @@
 	--height-volume-container: 32px;
 	--max-width-keyboard: 900px;
 	--max-height-keyboard: 560px;
-	--max-height-keyboard-header: 140px;
+	--max-height-keyboard-header: 120px;
+	--max-height-keyboard-header--desktop: 140px;
 	--width-lcd: 80%;
 	--width-controls: calc(100% - var(--width-lcd));
 	--size-controls-btn: 54px;

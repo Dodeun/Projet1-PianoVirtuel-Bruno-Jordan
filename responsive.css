@@ -1,5 +1,9 @@
 /* Affiche les shortcuts et l'option pour activer / desactiver, uniquement sur desktop */
 @media (hover: hover) and (pointer: fine) {
+	.keyboard__header {
+		max-height: var(--max-height-keyboard-header--desktop);
+	}
+
 	.controls__shortcuts {
 		display: block;
 		margin-bottom: var(--spacing-primary);

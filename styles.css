@@ -187,6 +187,7 @@ body {
 .controls__record,
 .controls__play {
 	background-color: var(--background-colot-inactive);
+	transition: background-color 0.15s ease-in-out;
 }
 
 .controls__record--active {
@@ -304,4 +305,8 @@ body {
 
 .key__shortcut {
 	display: none;
+}
+
+.raindeer {
+	pointer-events: none;
 }

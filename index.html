@@ -23,26 +23,22 @@
 						<h1 class="brand__title">Piano Virtuel</h1>
 					</div>
 					<form id="piano-type">
-						
-						<label>
-							<input type="radio" name="piano" value="classic" checked />
-							Classic
-						</label>
-						
-						<label>
-							<input type="radio" name="piano" value="grand-piano" checked />
-							Grand Piano
-						</label>
-
-						<label>
-							<input type="radio" name="piano" value="electric" />
-							Electric
-						</label>
-
-						<label>
-							<input type="radio" name="piano" value="rhodes" />
-							Rhodes
-						</label>
+						<div class="piano-type__container">
+							<input id="piano-grand-piano" type="radio" name="piano" value="grand-piano" checked/>
+							<label for="piano-grand-piano" class="piano-type__choice">Grand-piano</label>
+						</div>
+						<div class="piano-type__container">
+							<input id="piano-electric" type="radio" name="piano" value="electric"/>
+							<label for="piano-electric" class="piano-type__choice">Electric</label>
+						</div>
+						<div class="piano-type__container">
+							<input id="piano-rhodes" type="radio" name="piano" value="rhodes"/>
+							<label for="piano-rhodes" class="piano-type__choice">Rhodes</label>
+						</div>
+						<div class="piano-type__container">
+							<input id="piano-classic" type="radio" name="piano" value="classic"/>
+							<label for="piano-classic" class="piano-type__choice">Classic</label>
+						</div>
 					</form>
 				</div>
 				<!-- Partie avec les boutons -->
@@ -73,8 +69,8 @@
 							id="volume"
 							min="0"
 							max="1"
-							step="0.1"
-							value="0.1"
+							step="0.05"
+							value="0.5"
 						/>
 					</form>
 					<i class="fa-solid fa-volume-high"></i>

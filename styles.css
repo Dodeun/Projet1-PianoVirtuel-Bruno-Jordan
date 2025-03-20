@@ -141,15 +141,17 @@ body {
 	scrollbar-width: none;
 }
 
-#piano-type label {
+.piano-type__choice {
+	display: block;
 	position: relative;
 	cursor: pointer;
 	border: 1px dashed rgba(255, 255, 255, 0.5);
 	padding: var(--spacing-primary);
 }
 
-#piano-type .active {
-	background-color: rgba(255, 255, 255, 0.3);
+input[type="radio"]:checked + label {
+	background-color: rgba(255, 255, 255, 0.75);
+	color: var(--color-dark);
 }
 
 #piano-type input[type="radio"] {

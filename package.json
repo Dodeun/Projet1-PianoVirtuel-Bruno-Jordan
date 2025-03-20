@@ -19,5 +19,8 @@
   "homepage": "https://github.com/Dodeun/Projet1-PianoVirtuel-Bruno-Jordan#readme",
   "dependencies": {
     "raindeer": "^0.2.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4"
   }
 }

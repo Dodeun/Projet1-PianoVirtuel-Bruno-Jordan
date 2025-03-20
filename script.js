@@ -1,4 +1,5 @@
 /* const */
+const keyboard = document.querySelector(".keyboard"); // On recupere le piano dans le DOM
 const keysArray = document.querySelectorAll(".key"); // On recupere les touches de pianos dans le DOM
 const recordBtn = document.querySelector(".controls__record"); // On recupere le bouton record dans le DOM
 const playBtn = document.querySelector(".controls__play"); // On recupere le bouton play dans le DOM
@@ -14,6 +15,7 @@ const recordObject = {};
 let pianoVolume = volumeSlider.value;
 let startTimeOfRecording = 0;
 let playingRecord = false;
+let recordTimeLength = 0;
 let rainIncrement = 0;
 
 const keyboardReferences = {
@@ -102,19 +104,7 @@ volumeSlider.addEventListener("mouseup", (e) => {
 // Gestion raccourcis clavier
 shortcutBtn.addEventListener("click", () => {
 	shortcutBtn.classList.toggle("shortcut__btn--active");
-
-	const shortcutIsActive = shortcutBtn.classList.contains(
-		"shortcut__btn--active",
-	);
-	if (shortcutIsActive) {
-		for (const shortcutInfo of shortcutInfoList) {
-			shortcutInfo.style.opacity = 1;
-		}
-	} else {
-		for (const shortcutInfo of shortcutInfoList) {
-			shortcutInfo.style.opacity = 0;
-		}
-	}
+	keyboard.classList.toggle("key__shortcut--active");
 });
 
 // Gestion bouton enregistrement
@@ -122,16 +112,17 @@ function setupRecordBtn() {
 	recordBtn.addEventListener("click", () => {
 		recordBtn.classList.toggle("controls__record--active");
 		if (isRecording()) {
+			// Vide l'objet si il y avait deja un enregistrement
 			const props = Object.getOwnPropertyNames(recordObject);
 			for (let i = 0; i < props.length; i++) {
 				delete recordObject[props[i]];
 			}
-			console.log("Debut de l'enregistrement");
 			startTimeOfRecording = performance.now();
-			console.log(startTimeOfRecording);
+			playBtn.disabled = true;
 		} else {
 			console.log("Fin d'enregistrement:");
 			console.log(recordObject);
+			playBtn.disabled = false;
 		}
 	});
 }
@@ -148,18 +139,21 @@ function recordPlayedKey(clickedNote) {
 		recordObject[clickedNote] = [];
 	}
 	recordObject[clickedNote].push(timeClicked);
-	console.log(recordObject);
 }
 
 // Gestion playback
 function playback(record) {
+	recordTimeLength = 0;
 	console.log(record);
 	for (const note in record) {
 		for (const noteTime of record[note]) {
-			console.log(`${note} est jouée apres ${noteTime}`);
 			delayNote(note, noteTime);
+			if (recordTimeLength < noteTime) {
+				recordTimeLength = noteTime;
+			}
 		}
 	}
+	console.log(recordTimeLength);
 }
 
 // Gestion note delay
@@ -167,18 +161,28 @@ function delayNote(notePlayed, notePlayedTime) {
 	setTimeout(() => playClickedNote(notePlayed), notePlayedTime);
 }
 
+// Bouton play bloqué pendant l'écoute
+function lockPlay(recordDuration) {
+	playBtn.computedStyleMap.pointerEvents = "none";
+	setTimeout(() => {
+		recordBtn.disabled = false;
+		playBtn.computedStyleMap.pointerEvents = "auto";
+		playBtn.classList.remove("controls__play--active");
+		EmojiRain.stop(rainIncrement);
+		rainIncrement++;
+		playingRecord = false;
+	}, recordDuration + 1000);
+}
+
 // Gestion bouton play
 playBtn.addEventListener("click", () => {
 	if (!playingRecord) {
 		playingRecord = true;
+		recordBtn.disabled = true;
 		playBtn.classList.add("controls__play--active");
 		animDuringPlay();
 		playback(recordObject);
-	} else {
-		playingRecord = false;
-		playBtn.classList.remove("controls__play--active");
-		EmojiRain.stop(rainIncrement);
-		rainIncrement++;
+		lockPlay(recordTimeLength);
 	}
 	console.log(playingRecord);
 });

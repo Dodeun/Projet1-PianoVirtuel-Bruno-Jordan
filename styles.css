@@ -190,12 +190,19 @@ body {
 	transition: background-color 0.15s ease-in-out;
 }
 
+.controls__record:disabled,
+.controls__play:disabled {
+	cursor: not-allowed;
+	background-color: var(--background-colot-disabled);
+}
+
 .controls__record--active {
 	background-color: var(--background-color-record);
 }
 
 .controls__play--active {
 	background-color: var(--background-color-play);
+	pointer-events: none;
 }
 
 /* Controls shortcuts */

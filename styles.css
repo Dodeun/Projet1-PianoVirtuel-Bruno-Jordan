@@ -18,6 +18,11 @@ ul {
 	list-style: none;
 }
 
+img {
+	max-width: 100%;
+	height: auto;
+}
+
 /* ----- GENERAL - Design mobile first ----- */
 
 html {
@@ -76,6 +81,7 @@ body {
 	padding: var(--spacing-primary);
 	margin-bottom: var(--spacing-primary);
 	border-radius: var(--border-radius-lcd);
+	overflow: hidden;
 }
 
 .lcd::before,
@@ -126,6 +132,14 @@ body {
 	font-size: var(--font-size-titles);
 	font-weight: 500;
 	margin-left: var(--spacing-larger);
+}
+
+.logo {
+	display: none;
+	position: absolute;
+	top: 0%;
+	right: 30%;
+	width: 150px;
 }
 
 /* liste pianos */

@@ -15,6 +15,7 @@ const recordObject = {};
 let pianoVolume = volumeSlider.value;
 let startTimeOfRecording = 0;
 let playingRecord = false;
+let recordTimeLength = 0;
 let rainIncrement = 0;
 
 const keyboardReferences = {
@@ -142,17 +143,35 @@ function recordPlayedKey(clickedNote) {
 
 // Gestion playback
 function playback(record) {
+	recordTimeLength = 0;
 	console.log(record);
 	for (const note in record) {
 		for (const noteTime of record[note]) {
 			delayNote(note, noteTime);
+			if (recordTimeLength < noteTime) {
+				recordTimeLength = noteTime;
+			}
 		}
 	}
+	console.log(recordTimeLength);
 }
 
 // Gestion note delay
 function delayNote(notePlayed, notePlayedTime) {
 	setTimeout(() => playClickedNote(notePlayed), notePlayedTime);
+}
+
+// Bouton play bloqué pendant l'écoute
+function lockPlay(recordDuration) {
+	playBtn.computedStyleMap.pointerEvents = "none";
+	setTimeout(() => {
+		recordBtn.disabled = false;
+		playBtn.computedStyleMap.pointerEvents = "auto";
+		playBtn.classList.remove("controls__play--active");
+		EmojiRain.stop(rainIncrement);
+		rainIncrement++;
+		playingRecord = false;
+	}, recordDuration + 1000);
 }
 
 // Gestion bouton play
@@ -163,12 +182,7 @@ playBtn.addEventListener("click", () => {
 		playBtn.classList.add("controls__play--active");
 		animDuringPlay();
 		playback(recordObject);
-	} else {
-		playingRecord = false;
-		recordBtn.disabled = false;
-		playBtn.classList.remove("controls__play--active");
-		EmojiRain.stop(rainIncrement);
-		rainIncrement++;
+		lockPlay(recordTimeLength);
 	}
 	console.log(playingRecord);
 });

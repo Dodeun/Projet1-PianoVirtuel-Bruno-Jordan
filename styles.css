@@ -192,6 +192,7 @@ body {
 
 .controls__record:disabled,
 .controls__play:disabled {
+	cursor: not-allowed;
 	background-color: var(--background-colot-disabled);
 }
 
@@ -201,6 +202,7 @@ body {
 
 .controls__play--active {
 	background-color: var(--background-color-play);
+	pointer-events: none;
 }
 
 /* Controls shortcuts */

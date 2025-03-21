@@ -1,17 +1,68 @@
-/* FONTS */
-@import url("https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+/* FONTS FAMILY*/
+@import url("https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap");
+
 /* VARIABLES */
 :root {
-	--background-color-test1: hsl(240, 100%, 87%);
-	--background-color-test2: hsl(240, 100%, 87%);
-	--lcd: #000000;
-	--rec: red;
-	--play: #0afb06;
-	--back-keyboard: #6f768d;
-	--back_black_key: black;
-	--shadowsK: -4px -5px 2px 3px #6f8d82 inset;
-	--touch_black: #010000;
-	--touch_white: white;
-	--lettres-black: #eee;
-	--lettres-white: rgb(27, 27, 27);
+	/*fonts*/
+	--font-size: 18px;
+	--font-size-titles: 2.2rem;
+	--font-titles: "Doto", sans-serif;
+	--font-text: Arial, Helvetica, sans-serif;
+	--color-light: #f1f1f1;
+	--color-dark: #0e0e0e;
+	--color-red: rgb(255, 0, 0);
+	--color-green: rgb(0, 255, 0);
+
+	/*backgrounds*/
+	--background-color-body: hsl(240, 100%, 87%);
+	--background-color-keyboard: hsl(226, 12%, 49%);
+	--background-color-key-white: #f1f1f1;
+	--background-color-key-black: #0e0e0e;
+	--background-color-kayboard-dark: hsl(226, 12%, 22%);
+	--background-color-btn: #f1f1f1;
+	--background-color-inactive-record: rgb(69, 0, 0);
+	--background-color-inactive-play: rgb(0, 88, 0);
+	--background-color-record: red;
+	--background-color-play: rgb(0, 255, 0);
+	--background-colot-disabled: #666666;
+
+	/*spacings*/
+	--spacing-primary: 0.5rem;
+	--spacing-larger: calc(var(--spacing-primary) * 2);
+	--spacing-smaller: calc(var(--spacing-primary) / 2);
+
+	/*sizings*/
+	--height-volume-container: 32px;
+	--max-width-keyboard: 950px;
+	--max-height-keyboard: 560px;
+	--max-height-keyboard-header: 105px;
+	--max-height-keyboard-header--desktop: 140px;
+	--width-lcd: 80%;
+	--width-controls: calc(100% - var(--width-lcd));
+	--size-controls-btn: 54px;
+	--size-slider-btn: 20px;
+
+	/*borders*/
+	--border-radius-keyboard: 40px;
+	--border-radius-keys: 8px 8px 26px 26px;
+	--border-radius-lcd: 40px 8px 8px 8px;
+	--border-lcd: 2px solid var(--background-color-kayboard-dark);
+	--border-btn: 2px solid var(--background-color-kayboard-dark);
+
+	/*box-shadows*/
+	--box-shadow-key: -4px -5px 2px 3px #6f8d82 inset;
+	--box-shadow-keyboard: 0 6px 4px -4px var(--background-color-kayboard-dark);
+}
+
+/* background gradient color position */
+@property --left-position {
+	syntax: "<percentage>";
+	inherits: false;
+	initial-value: 1%;
+}
+
+@property --right-position {
+	syntax: "<percentage>";
+	inherits: false;
+	initial-value: 95%;
 }

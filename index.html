@@ -8,52 +8,74 @@
 		<!-- my main css file -->
 		<link rel="stylesheet" href="styles.css" />
 		<!-- media query for screens larger than 700px -->
-		<link
-			rel="stylesheet"
-			href="responsive-largescreen.css"
-			media="only screen and (min-width: 1200px)"
-		/>
+		<link rel="stylesheet" href="responsive.css" />
 		<!-- Don't forget to add description for SEO -->
-		<meta name="description" content="TOOOOOOOOOOOOOO DOOOOOOOOOOOOOO" />
-		<title>Piano virtuel</title>
+		<meta name="description" content="Découvrez un piano virtuel interactif pour jouer de la musique, vous enregistrer et vous réécouter, accessible sur téléphone et PC de bureau. Amusez-vous tout en apprenant et en créant des morceaux uniques !" />
+		<title>Piano virtuel - VirtuKey</title>
+		<link rel="icon" type="image/x-icon" href="assets/images/logo/favicon.png">
 	</head>
 	<body>
-		<main class="keyboard">
+		<main class="keyboard key__shortcut--active">
 			<!-- Partie haute du clavier -->
 			<div class="keyboard__header">
-				<!-- Partie avec logo et titre (qui se trouve en haut a gauche sur la maquette) -->
-				<div class="brand">
-					<div class="brand__logo"><p>[V]</p></div>
-					<h1 class="brand__title">Piano Virtuel</h1>
+				<div class="lcd">
+					<!-- Partie avec logo et choix piano -->
+					<div class="brand">
+						<h1 class="brand__title">Piano Virtuel</h1>
+						<div class="logo"><img src="assets/images/logo/logoV3Blanc.svg" alt="logo virtukey"></div>
+					</div>
+					<form id="piano-type">
+						<div class="piano-type__container">
+							<input id="piano-grand-piano" type="radio" name="piano" value="grand-piano" checked/>
+							<label for="piano-grand-piano" class="piano-type__choice">Grand-piano</label>
+						</div>
+						<div class="piano-type__container">
+							<input id="piano-electric" type="radio" name="piano" value="electric"/>
+							<label for="piano-electric" class="piano-type__choice">Electric</label>
+						</div>
+						<div class="piano-type__container">
+							<input id="piano-rhodes" type="radio" name="piano" value="rhodes"/>
+							<label for="piano-rhodes" class="piano-type__choice">Rhodes</label>
+						</div>
+						<div class="piano-type__container">
+							<input id="piano-classic" type="radio" name="piano" value="classic"/>
+							<label for="piano-classic" class="piano-type__choice">Classic</label>
+						</div>
+					</form>
 				</div>
-				<!-- Partie avec les boutons (qui se trouve en haut a droite sur la maquette) -->
+				<!-- Partie avec les boutons -->
 				<div class="controls">
-					<!-- boutton pour enregistrer -->
-					<button type="button" class="controls__btn controls__record"></button>
-					<!-- boutton pour jouer le morceau enregistré -->
-					<button type="button" class="controls__btn controls__play"></button>
+					<div class="controls__shortcuts">
+						<button class="shortcut__btn shortcut__btn--active">
+							<p class="shortcut__btn-content">
+								Raccourcis clavier
+							</p>
+						</button>
+					</div>
+					<div class="controls__replay">
+						<!-- boutton pour enregistrer -->
+						<button
+							type="button"
+							class="controls__btn controls__record"
+						></button>
+						<!-- boutton pour jouer le morceau enregistré -->
+						<button type="button" class="controls__btn controls__play" disabled="true"></button>
+					</div>
 				</div>
-				<div class="additional__controls">
-					<div class="volume__container">
-						<label for="volume">Volume:</label>
+				<div class="volume__container">
+					<i class="fa-solid fa-volume-low"></i>
+					<form id="piano-volume">
 						<input
 							type="range"
 							class="slider"
 							id="volume"
 							min="0"
 							max="1"
-							step="0.01"
+							step="0.05"
 							value="0.5"
 						/>
-					</div>
-					<div class="piano-selection__container">
-						<label for="piano-select">Style:</label>
-						<select id="piano-select">
-							<option value="option1">Normal</option>
-							<option value="option2">Electrique</option>
-							<option value="option3">Rhodes</option>
-						</select>
-					</div>
+					</form>
+					<i class="fa-solid fa-volume-high"></i>
 				</div>
 			</div>
 			<div class="keys__container">
@@ -100,6 +122,11 @@
 				</ul>
 			</div>
 		</main>
+		<script src="https://unpkg.com/raindeer"></script>
+		<script
+			src="https://kit.fontawesome.com/cbcb698840.js"
+			crossorigin="anonymous"
+		></script>
 		<script src="script.js"></script>
 	</body>
 </html>

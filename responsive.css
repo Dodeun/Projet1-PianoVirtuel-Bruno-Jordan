@@ -1,0 +1,86 @@
+/* Affiche les shortcuts et l'option pour activer / desactiver, uniquement sur desktop */
+@media (hover: hover) and (pointer: fine) {
+	.logo {
+		display: block;
+		position: absolute;
+		top: -98%;
+		right: 4%;
+		width: 400px;
+		transform: translateY(-30%);
+		opacity: 0.2;
+		animation: spin 20s infinite linear;
+	}
+
+	@keyframes spin {
+		from {
+			transform: rotate(0deg);
+		}
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	.keyboard.key__shortcut--active .key__shortcut {
+		opacity: 1;
+	}
+
+	.keyboard__header {
+		max-height: var(--max-height-keyboard-header--desktop);
+	}
+
+	.controls__shortcuts {
+		display: block;
+		margin-bottom: var(--spacing-primary);
+	}
+
+	.shortcut__btn {
+		background-color: transparent;
+		border: none;
+		cursor: pointer;
+		color: var(--color-light);
+		background-color: var(--background-color-kayboard-dark);
+		padding: var(--spacing-primary);
+		border: var(--border-btn);
+		border-radius: var(--border-radius-keyboard);
+		transition: 0.2s all ease-in-out;
+	}
+
+	.shortcut__btn-content {
+		font-size: 1rem;
+	}
+
+	.shortcut__btn--active {
+		background-color: var(--color-light);
+		color: var(--color-dark);
+	}
+
+	.shortcut__btn .key__white {
+		color: var(--color-dark);
+	}
+
+	.key__black {
+		color: var(--color-light);
+	}
+
+	.key__shortcut {
+		display: block;
+		font-size: 1.5rem;
+		opacity: 0;
+		font-weight: 600;
+		padding-bottom: var(--spacing-larger);
+		user-select: none;
+		transition: opacity 0.2s ease-in-out;
+	}
+}
+
+@media (max-width: 640px) {
+	.brand__title {
+		font-size: 1.5rem;
+	}
+}
+
+@media (max-width: 800px) {
+	.logo {
+		display: none;
+	}
+}

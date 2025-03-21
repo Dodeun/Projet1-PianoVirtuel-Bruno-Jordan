@@ -18,84 +18,101 @@ ul {
 	list-style: none;
 }
 
+img {
+	max-width: 100%;
+	height: auto;
+}
+
 /* ----- GENERAL - Design mobile first ----- */
 
 html {
-	font-size: 18px;
-	font-family: Arial, Helvetica, sans-serif;
-	color: #eee;
+	font-family: var(--font-text);
 }
 
 body {
-	display: grid;
-	align-items: center;
-	background-color: var(--background-color-test1);
-	height: 100vh;
-	padding: 0.5rem;
-}
-
-/* clavier et fond */
-.keyboard {
-	margin: 0 auto;
-	width: 100%;
-	max-width: 800px;
-	border-radius: 50px;
-	background-color: var(--back-keyboard);
-	padding: 1.5rem 1rem 1rem 1rem;
-}
-
-.keyboard__header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-/* Partie avec logo et titre */
-.brand {
+	background-color: var(--background-color-body);
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	gap: 1rem;
-	background-color: var(--lcd);
-	width: 50%;
-	border-radius: 15px;
+	height: 100vh;
+	padding: var(--spacing-primary);
 }
 
-.brand {
-	opacity: 0.99;
+/* Clavier */
+
+.keyboard {
+	z-index: 0;
+	display: flex;
+	flex-direction: column;
+	background-color: var(--background-color-keyboard);
+	width: 100%;
+	height: 95%;
+	max-height: var(--max-height-keyboard);
+	max-width: var(--max-width-keyboard);
+	padding: var(--spacing-larger) var(--spacing-larger) 0;
+	border-radius: var(--border-radius-keyboard);
+	margin-bottom: var(--spacing-larger);
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* Header clavier */
+
+.keyboard__header {
 	position: relative;
-	border-radius: 35px 10px 10px 10px;
+	max-height: var(--max-height-keyboard-header);
+	display: flex;
+	justify-content: space-between;
+	gap: var(--spacing-primary);
+	box-shadow: var(--box-shadow-keyboard);
 }
 
-.brand::before,
-.brand::after {
+/* Panneau LCD */
+
+.lcd {
+	border: var(--border-lcd);
+	position: relative;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: var(--width-lcd);
+	color: var(--color-light);
+	background-color: grey;
+	padding: var(--spacing-primary);
+	margin-bottom: var(--spacing-primary);
+	border-radius: var(--border-radius-lcd);
+	overflow: hidden;
+}
+
+.lcd::before,
+.lcd::after {
 	content: "";
 	position: absolute;
 	top: 0;
 	left: 0;
 	background: linear-gradient(
 		45deg,
-		#920000,
-		#01acac,
-		#00a300,
-		#0000ff,
-		#920000,
-		#01acac,
-		#00a300,
-		#0000ff,
-		#920000
+		#8482c0,
+		#464555,
+		#007d59,
+		#777586,
+		#9491d4,
+		#464555,
+		#007d59,
+		#777586,
+		#8886c7
 	);
 	width: 100%;
 	height: 100%;
 	z-index: -1;
 	background-size: 500%;
 	animation: animate 50s infinite;
-	border-radius: 35px 10px 10px 10px;
+	border-radius: var(--border-radius-lcd);
 	box-shadow: #aaa;
 }
 
-.brand::after {
-	filter: blur(40px);
+.lcd::after {
+	filter: blur(20px);
 }
 
 @keyframes animate {
@@ -110,92 +127,246 @@ body {
 	}
 }
 
-/* ecran titre h1 lcd */
 .brand__title {
-	font-size: 2rem;
-	font-family: "Doto", sans-serif;
+	font-family: var(--font-titles);
+	font-size: var(--font-size-titles);
+	font-weight: 500;
+	margin-left: var(--spacing-larger);
 }
 
-/* le logo */
-.brand__logo {
+.logo {
+	display: none;
+	position: absolute;
+	top: 0%;
+	right: 30%;
+	width: 150px;
+}
+
+/* liste pianos */
+
+#piano-type {
+	opacity: 0.8;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: var(--spacing-smaller);
+	overflow-y: scroll;
+	scrollbar-width: none;
+}
+
+.piano-type__choice {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	border: 1px dashed rgba(255, 255, 255, 0.5);
+	padding: var(--spacing-primary);
+}
+
+input[type="radio"]:checked + label {
+	background-color: rgba(255, 255, 255, 0.75);
+	color: var(--color-dark);
+}
+
+#piano-type input[type="radio"] {
 	display: none;
 }
+
+/* Controls */
 
 .controls {
 	display: flex;
-	gap: 1rem;
+	flex-direction: column-reverse;
+	justify-content: center;
+	align-items: center;
+	width: var(--width-controls);
+	gap: var(--spacing-larger);
+}
+
+/* Controls record / play */
+
+.controls__replay {
+	display: flex;
+	justify-content: center;
+	gap: var(--spacing-primary);
+	width: 100%;
 }
 
 .controls__btn {
+	width: var(--size-controls-btn);
+	height: var(--size-controls-btn);
 	border-radius: 50px;
-	width: 50px;
-	height: 50px;
+	border: var(--border-btn);
+	cursor: pointer;
 }
 
-/* boutton pour enregistrer */
 .controls__record {
-	background-color: var(--rec);
+	background-color: var(--background-color-inactive-record);
 }
 
-/* boutton pour jouer le morceau enregistré */
 .controls__play {
-	background-color: var(--play);
+	background-color: var(--background-color-inactive-play);
+	transition: background-color 0.15s ease-in-out;
 }
 
-.additional__controls {
+/* bouton clickable */
+
+.controls__record::after,
+.controls__play::after {
+	font-size: 1.75rem;
+	font-weight: bold;
+}
+
+.controls__record::after {
+	content: "R";
+	color: var(--color-red);
+}
+
+.controls__play::after {
+	content: "P";
+	color: var(--color-green);
+}
+
+/* bouton disabled */
+
+.controls__record:disabled,
+.controls__play:disabled {
+	cursor: not-allowed;
+	background-color: var(--background-colot-disabled);
+}
+
+.controls__record:disabled::after {
+	color: black;
+}
+
+.controls__play:disabled::after {
+	color: black;
+}
+
+/* bouton actif */
+.controls__record--active::after,
+.controls__play--active::after {
+	color: var(--color-light);
+}
+
+.controls__record--active {
+	background-color: var(--background-color-record);
+}
+
+.controls__play--active {
+	background-color: var(--background-color-play);
+	pointer-events: none;
+}
+
+/* Controls shortcuts */
+
+.controls__shortcuts {
 	display: none;
 }
 
-/* les touches du piano */
+/* Slider Volume */
+
+.volume__container {
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	height: var(--height-volume-container);
+	gap: var(--spacing-primary);
+	background-color: var(--background-color-keyboard);
+	position: absolute;
+	bottom: 1px;
+	left: 50%;
+	transform: translate(-50%, 100%);
+	padding: var(--spacing-smaller) var(--spacing-larger);
+	border-radius: 0 0 var(--border-radius-keyboard) var(--border-radius-keyboard);
+	box-shadow: var(--box-shadow-keyboard);
+}
+
+.slider {
+	appearance: none;
+	background-color: var(--background-color-kayboard-dark);
+	height: 6px;
+	width: 120px;
+	display: block;
+	cursor: pointer;
+}
+
+/* bouton slider pour firefox */
+.slider::-moz-range-thumb {
+	width: calc(var(--size-slider-btn) - 2px);
+	height: calc(var(--size-slider-btn) - 2px);
+	border: var(--border-btn);
+	border-radius: 6px;
+	background-color: var(--background-color-btn);
+}
+
+/* boutons slider pour chrome */
+.slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: var(--size-slider-btn);
+	height: var(--size-slider-btn);
+	border: 1px solid var(--background-color-kayboard-dark);
+	border-radius: 6px;
+	background-color: var(--background-color-btn);
+}
+
+/* Touches clavier */
+
 .keys__container {
-	transform: translateY(30px);
+	flex-grow: 1;
 }
 
 .keys {
 	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-}
-
-.key__shortcut {
-	display: flex;
-	align-items: flex-end;
-	padding-bottom: 24px;
+	height: calc(100% + var(--spacing-larger));
+	gap: var(--spacing-smaller);
 }
 
 .key {
-	width: 105px;
-	height: 250px;
-	border-radius: 10px 10px 26px 26px;
-	box-shadow: var(--shadowsK);
-	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
+	border-radius: var(--border-radius-keys);
+	padding: var(--spacing-primary);
+	box-shadow: var(--box-shadow-key);
 }
 
-/* les blanches */
 .key__white {
-	display: flex;
-	justify-content: center;
-	background-color: var(--touch_white);
-	color: var(--lettres-white);
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		rgba(80, 80, 80, 1) 0%,
+		rgba(238, 238, 238, 1) var(--left-position),
+		rgba(255, 255, 255, 1) 50%,
+		rgba(238, 238, 238, 1) var(--right-position),
+		rgba(80, 80, 80, 1) 100%
+	);
+	transition: --left-position 0.1s ease-in, --right-position 0.1s ease-in;
 }
 
-.key__white:active {
-	background-color: rgb(202, 202, 202);
+.key__white--active {
+	--left-position: 20%;
+	--right-position: 76%;
 }
 
-/* les Noires */
 .key__black {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
 	z-index: 1;
-	margin: 0 -40px;
-	width: 80px;
-	height: 160px;
-	background-color: var(--touch_black);
-	color: var(--lettres-black);
+	width: 66%;
+	height: 66%;
+	margin: 0 -5%;
+	background: #1b1b1b;
+	transition: background 0.1s ease-in;
 }
 
-.key__black:active {
-	background-color: rgb(61, 61, 61);
+.key__black--active {
+	background: #5c5c5c;
+}
+
+.key__shortcut {
+	display: none;
+}
+
+.raindeer {
+	pointer-events: none;
 }
